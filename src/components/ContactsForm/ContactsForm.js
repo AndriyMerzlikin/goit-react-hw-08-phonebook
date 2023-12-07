@@ -6,6 +6,9 @@ import {
   ErrorMsg,
 } from './ContactsForm.styled';
 import * as Yup from 'yup';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../redux/contactsSlice';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
@@ -17,7 +20,17 @@ const formSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactsForm = ({ newContact }) => {
+export const ContactsForm = () => {
+  const value = useSelector(getContacts);
+  // console.log(value);
+
+  function getContacts(state) {
+    return state.contacts;
+    // console.log(state.contacts);
+  }
+
+  const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{
@@ -26,8 +39,16 @@ export const ContactsForm = ({ newContact }) => {
       }}
       validationSchema={formSchema}
       onSubmit={(values, actions) => {
-        newContact(values);
-        actions.resetForm();
+        const existingContact = value.some(
+          contact => contact.name.toLowerCase() === values.name.toLowerCase()
+        );
+        if (existingContact) {
+          Notify.failure('Contact already exists');
+        } else {
+          Notify.success('Contact ADD');
+          dispatch(addContact(values));
+          actions.resetForm();
+        }
       }}
     >
       <StyledForm>

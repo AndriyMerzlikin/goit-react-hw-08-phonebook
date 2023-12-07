@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { getContactsValue } from '../redux/contactsSlice';
 import {
   StyledForm,
   StyledField,
@@ -21,13 +22,14 @@ const formSchema = Yup.object().shape({
 });
 
 export const ContactsForm = () => {
-  const value = useSelector(getContacts);
-  // console.log(value);
+  const value = useSelector(getContactsValue);
 
-  function getContacts(state) {
-    return state.contacts;
-    // console.log(state.contacts);
-  }
+  console.log(value);
+
+  // function getContacts(state) {
+  //   return state.contacts.contacts;
+  //   // console.log(state.contacts);
+  // }
 
   const dispatch = useDispatch();
 

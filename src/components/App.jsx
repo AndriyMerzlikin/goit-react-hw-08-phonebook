@@ -1,17 +1,16 @@
-import { useState, useEffect } from 'react';
 import { ContactsForm } from './ContactsForm/ContactsForm';
 import { Contacts } from './Contacts/Contacts';
 import { Filter } from './Filter/Filter';
 
-const localStorageKey = 'contacts';
+// const localStorageKey = 'contacts';
 
-const getInitialContacts = () => {
-  const savedContacts = window.localStorage.getItem(localStorageKey);
-  if (savedContacts !== null) {
-    return JSON.parse(savedContacts);
-  }
-  // return initialContacts;
-};
+// const getInitialContacts = () => {
+//   const savedContacts = window.localStorage.getItem(localStorageKey);
+//   if (savedContacts !== null) {
+//     return JSON.parse(savedContacts);
+//   }
+//   // return initialContacts;
+// };
 
 export const App = () => {
   // useEffect(() => {

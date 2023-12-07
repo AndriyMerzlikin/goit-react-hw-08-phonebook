@@ -24,13 +24,6 @@ const formSchema = Yup.object().shape({
 export const ContactsForm = () => {
   const value = useSelector(getContactsValue);
 
-  console.log(value);
-
-  // function getContacts(state) {
-  //   return state.contacts.contacts;
-  //   // console.log(state.contacts);
-  // }
-
   const dispatch = useDispatch();
 
   return (

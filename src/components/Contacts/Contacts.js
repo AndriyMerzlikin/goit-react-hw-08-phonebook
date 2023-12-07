@@ -4,7 +4,7 @@ import { getContactsValue } from '../redux/contactsSlice';
 
 export const Contacts = () => {
   const value = useSelector(getContactsValue);
-  // console.log(value);
+  console.log(value);
 
   // function getContacts(state) {
   //   return state.contacts;

@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import { getContactsValue } from '../redux/contactsSlice';
 import {
   StyledForm,
   StyledField,
@@ -9,7 +8,8 @@ import {
 import * as Yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../redux/contactsSlice';
+import { addContact } from '../redux/service';
+import { selectContacts } from '../redux/selectors';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()
@@ -22,7 +22,7 @@ const formSchema = Yup.object().shape({
 });
 
 export const ContactsForm = () => {
-  const value = useSelector(getContactsValue);
+  const value = useSelector(selectContacts);
 
   const dispatch = useDispatch();
 

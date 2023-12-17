@@ -8,8 +8,8 @@ import {
 import * as Yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../redux/service';
-import { selectContacts } from '../redux/selectors';
+import { addContact } from '../../redux/service';
+import { selectContacts } from '../../redux/selectors';
 
 const formSchema = Yup.object().shape({
   name: Yup.string()

@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { ContactDelButton } from './Contacts.styled';
+
+import { selectContacts, selectFilter } from '../../Redux/selector';
+import { deleteContact, fetchContacts } from '../../Redux/servise';
 import { useEffect } from 'react';
-import { fetchContacts, deleteContact } from '../../redux/service';
-import { selectContacts, selectFilter } from '../../redux/selectors';
 
 export const Contacts = () => {
   const value = useSelector(selectContacts);
@@ -16,25 +18,25 @@ export const Contacts = () => {
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
   return (
     <div>
-      <ul>
-        {visibleContacts.map(({ name, number, id }) => (
-          <li key={id}>
-            <p>
-              {name}: {number}
-            </p>
-            <button
-              onClick={() => {
-                dispatch(deleteContact(id));
-              }}
-            >
-              delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      {
+        <ul>
+          {visibleContacts.map(({ name, number, id }) => (
+            <li key={id}>
+              <p>
+                {name}: {number}
+              </p>
+              <ContactDelButton
+                type="button"
+                onClick={() => dispatch(deleteContact(id))}
+              >
+                delete
+              </ContactDelButton>
+            </li>
+          ))}
+        </ul>
+      }
     </div>
   );
 };
